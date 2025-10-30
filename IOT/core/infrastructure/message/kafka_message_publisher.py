@@ -53,7 +53,6 @@ class KafkaMessagePublisher(IMessagePublisher):
 
             self._producer.poll(0)
 
-            logger.info(f"✅ Mensaje publicado correctamente en topic '{topic}'")
         except BufferError:
             logger.warning("⚠️  Buffer lleno, esperando a que se vacíe...")
             self._producer.poll(1)
@@ -65,8 +64,8 @@ class KafkaMessagePublisher(IMessagePublisher):
         if err:
             print('ERROR: Message failed delivery: {}'.format(err))
         else:
-            print("Produced event to topic {topic}: key = {key:12} value = {value:12}".format(
-                topic=msg.topic(), key=msg.key().decode('utf-8'), value=msg.value().decode('utf-8')))
+            logger.info(f"✅ Métrica publicada correctamente en el topic {msg.topic()}")
+
 
     def close(self):
         logger.info("Cerrando productor Kafka (flushing pending messages)...")
