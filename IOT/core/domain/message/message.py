@@ -10,9 +10,6 @@ class Message:
     metric: Metric
     metadata: Optional[dict] = None
 
-    def __str__(self) -> str:
-        return print(f"[{self.datetime}][{self._context}]{self.message} ( {self._message} )")
-
     def to_dict(self):
         d = asdict(self)
         d["datetime"] = self.datetime.value.isoformat()
