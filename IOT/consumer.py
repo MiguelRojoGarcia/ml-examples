@@ -5,6 +5,7 @@ from core.infrastructure.message.kafka_message_consumer import KafkaMetricConsum
 from core.infrastructure.message.kafka_message_publisher import KafkaMessagePublisher
 
 from core.domain.message.message import Message
+from core.domain.metric.metric import Metric
 from core.application.metric.save_metric import SaveMetric
 from core.infrastructure.metric.mongo_metric_repository import MongoMetricRepository
 
@@ -33,7 +34,7 @@ save_metric_handler = SaveMetric(messagePublisher=save_metric_publisher,metricRe
 
 def process_metric(message:Message) :
     print(f"📥 Recibido {message.metric}")
-    save_metric_handler.handle(metric=message.metric)
+    save_metric_handler.handle(metric=Metric.from_dict(message.metric))
 
 try:
 

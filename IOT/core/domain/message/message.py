@@ -1,5 +1,8 @@
 from dataclasses import dataclass , asdict
 from core.domain.common.value_objects.timestamp import TimeStamp
+from core.domain.common.value_objects.temperature import Temperature
+from core.domain.common.value_objects.humidity import Humidity
+from core.domain.common.value_objects.device import Device
 from core.domain.metric.metric import Metric
 from typing import Optional
 

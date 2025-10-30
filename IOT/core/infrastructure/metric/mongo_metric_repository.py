@@ -25,14 +25,8 @@ class MongoMetricRepository(IMetricRepository):
     def save(self, metric: Metric) -> None:
        
         try:
-            document = (
-                metric.to_dict()
-                if hasattr(metric, "to_dict")
-                else metric.__dict__
-            )
-
-            self._collection.insert_one(document)
-            logger.debug(f"✅ Métrica guardada: {document}")
+            self._collection.insert_one(metric.to_dict())
+            logger.debug(f"✅ Métrica guardada")
         except Exception as e:
             logger.exception(f"❌ Error guardando métrica en MongoDB: {e}")
             raise

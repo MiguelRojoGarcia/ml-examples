@@ -34,6 +34,17 @@ services:
     networks:
       - iot-net
 
+  iot-mongo:
+    image: mongo:7.0
+    container_name: iot-mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - iot-net
+
   zookeeper:
     image: confluentinc/cp-zookeeper:7.7.1
     container_name: zookeeper
@@ -98,3 +109,5 @@ services:
 networks:
   iot-net:
     driver: bridge
+volumes:
+  mongo_data:

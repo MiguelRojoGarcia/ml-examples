@@ -18,3 +18,14 @@ class Metric:
         d = asdict(self)
         d["datetime"] = self.datetime.value.isoformat()
         return d
+    
+    @staticmethod
+    def from_dict(data: dict) -> "Metric":
+        return Metric(
+            datetime=TimeStamp.from_dict(data["datetime"])
+            if hasattr(TimeStamp, "from_dict")
+            else TimeStamp(**data["datetime"]),
+            temp=Temperature(**data["temp"]),
+            humidity=Humidity(**data["humidity"]),
+            device=Device(**data["device"]),
+        )
