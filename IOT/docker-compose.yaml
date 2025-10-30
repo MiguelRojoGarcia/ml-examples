@@ -9,7 +9,6 @@ services:
     environment:
       SENSOR_NO: "NORTH-SENSOR-001"
       SENSOR_TIME_SYNC: 5
-      KAFKA_TOPIC: "north-sensor"
     networks:
       - iot-net
 
@@ -21,7 +20,6 @@ services:
     environment:
       SENSOR_NO: "SOUTH-SENSOR-001"
       SENSOR_TIME_SYNC: 10
-      KAFKA_TOPIC: "south-sensor"     
     networks:
       - iot-net
 
