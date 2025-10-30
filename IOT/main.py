@@ -20,22 +20,29 @@ KAFKA_HOST=os.getenv('KAFKA_HOST')
 KAFKA_USER=os.getenv('KAFKA_USER')
 KAFKA_PASSWD=os.getenv('KAFKA_PASSWD')
 KAFKA_TOPIC=os.getenv('KAFKA_TOPIC')
-
-SENSOR_TIME_SYNC=os.getenv('KAFKA_TOPIC')
+KAFKA_CLIENT_ID=os.getenv('KAFKA_CLIENT_ID')
+SENSOR_TIME_SYNC=os.getenv('SENSOR_TIME_SYNC')
 
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(name)s: %(message)s"
 )
 
-##prepare publisher
-publisher = KafkaMessagePublisher( bootstrap_servers=[KAFKA_HOST],username=KAFKA_USER, password=KAFKA_PASSWD)
+#simluate sensors
 sensors = [
     Device(no=str(uuid.uuid4()),name="north-sensor"),
     Device(no=str(uuid.uuid4()),name="south-sensor"),
     Device(no=str(uuid.uuid4()),name="chamber-a-sensor"),
     Device(no=str(uuid.uuid4()),name="chamber-b-sensor"),
 ]
+
+##prepare publisher
+publisher = KafkaMessagePublisher(
+    bootstrap_servers=[KAFKA_HOST],
+    username=KAFKA_USER,
+    password=KAFKA_PASSWD,
+    client_id=KAFKA_CLIENT_ID
+)
 
 try:
 
@@ -49,7 +56,7 @@ try:
             #prepare metric
             msg = Message( datetime=TimeStamp.now(),  context="test", metric=metric)
             publisher.publish(topic=KAFKA_TOPIC,message=msg)
-        time.sleep(5)
+        time.sleep(int(SENSOR_TIME_SYNC))
 except KeyboardInterrupt:
     logging.info("🛑 Simulación detenida por el usuario.")
 finally:

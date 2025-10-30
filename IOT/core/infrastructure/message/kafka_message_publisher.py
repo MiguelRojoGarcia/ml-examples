@@ -11,13 +11,14 @@ class KafkaMessagePublisher(IMessagePublisher):
     def __init__(
         self,
         bootstrap_servers: list[str],
+        client_id: str,
         username: Optional[str] = "",
         password: Optional[str] = "",
     ):
         
         config = {
             "bootstrap.servers": ",".join(bootstrap_servers),
-            "client.id": "iot-producer",
+            "client.id": client_id,
             'security.protocol': 'PLAINTEXT',
             'acks':'all'
         }
