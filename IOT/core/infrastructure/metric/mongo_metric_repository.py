@@ -9,9 +9,9 @@ class MongoMetricRepository(IMetricRepository):
 
     def __init__(
         self,
-        uri: str = "mongodb://mongodb:27017",
-        database: str = "iot",
-        collection: str = "metrics",
+        uri: str,
+        database: str,
+        collection: str,
     ):
        
         self._client = MongoClient(uri)

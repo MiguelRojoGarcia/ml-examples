@@ -33,12 +33,7 @@ logging.basicConfig(
 )
 
 ##prepare publisher
-publisher = KafkaMessagePublisher(
-    bootstrap_servers=[KAFKA_HOST],
-    username=KAFKA_USER,
-    password=KAFKA_PASSWD,
-    client_id=KAFKA_CLIENT_ID
-)
+publisher = KafkaMessagePublisher(bootstrap_servers=[KAFKA_HOST],username=KAFKA_USER,password=KAFKA_PASSWD,client_id=KAFKA_CLIENT_ID)
 
 logging.info(f"Sensor {SENSOR_NO} activado")
 
