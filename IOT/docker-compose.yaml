@@ -8,9 +8,11 @@ services:
       - kafka
     environment:
       SENSOR_NO: "NORTH-SENSOR-001"
-      SENSOR_TIME_SYNC: 5     
+      SENSOR_TIME_SYNC: 5
+      KAFKA_TOPIC: "north-sensor"
     networks:
       - iot-net
+
   iot-device-south-sensor:
     build: .
     container_name: iot-device-south-sensor
@@ -18,10 +20,10 @@ services:
       - kafka
     environment:
       SENSOR_NO: "SOUTH-SENSOR-001"
-      SENSOR_TIME_SYNC: 5     
+      SENSOR_TIME_SYNC: 10
+      KAFKA_TOPIC: "south-sensor"     
     networks:
       - iot-net
-
 
   zookeeper:
     image: confluentinc/cp-zookeeper:7.7.1
@@ -45,7 +47,7 @@ services:
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://kafka:29092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
