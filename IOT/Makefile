@@ -1,6 +1,3 @@
-build:
-	docker build -t iot-producer .
-run:
-	docker run --rm -it iot-producer
-update-requirements:
-	pip freeze > requirements.txt 
+deploy:
+	docker-compose down
+	docker-compose up --build -d
