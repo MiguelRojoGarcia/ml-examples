@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass , asdict
 from core.domain.common.value_objects.timestamp import TimeStamp
 from core.domain.common.value_objects.temperature import Temperature
 from core.domain.common.value_objects.humidity import Humidity
@@ -13,4 +13,8 @@ class Metric:
     
     def __str__(self) -> str:
         return print(f"[{self.datetime.value}][{self.device.no}]{self.temp.value}")    
-        
+    
+    def to_dict(self):
+        d = asdict(self)
+        d["datetime"] = self.datetime.value.isoformat()
+        return d

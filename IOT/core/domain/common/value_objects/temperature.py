@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import Optional
 
 TEMP_UNIT_CEL   = "C"
 TEMP_UNIT_FA    = "F"
@@ -6,7 +7,7 @@ TEMP_UNIT_FA    = "F"
 @dataclass(frozen=True)
 class Temperature:
     value:float
-    unit: str    
+    unit: Optional[str] =  TEMP_UNIT_CEL   
     
     def __str__(self) -> str:
         return f"{self.value} {self.unit}"
