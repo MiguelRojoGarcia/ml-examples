@@ -1,5 +1,4 @@
-import pytest
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timezone
 from core.domain.common.value_objects.timestamp import TimeStamp
 
 def test_now_returns_utc_datetime():

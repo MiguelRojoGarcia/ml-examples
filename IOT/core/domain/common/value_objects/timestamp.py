@@ -15,6 +15,12 @@ class TimeStamp:
     def to_iso(self) -> str:
         return self.value.astimezone(timezone.utc).isoformat().replace("+00:00", "Z")
 
+    @staticmethod
+    def from_iso(iso_str: str) -> "TimeStamp":
+        parsed = datetime.fromisoformat(iso_str.replace("Z", "+00:00"))
+        return TimeStamp(parsed)
+
+
     def to_dict(self) -> dict:
         return {"value": self.to_iso()}
 

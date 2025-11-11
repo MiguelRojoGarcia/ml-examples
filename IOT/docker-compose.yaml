@@ -1,6 +1,6 @@
 services:
 
-  #SENSORS
+  #sensors
   iot-device-north-sensor:
     build:
         dockerfile: publisher.Dockerfile
@@ -25,6 +25,7 @@ services:
     networks:
       - iot-net
 
+  #consumer
   iot-consumer:
     build:
         dockerfile: consumer.Dockerfile
@@ -34,6 +35,7 @@ services:
     networks:
       - iot-net
 
+  #databases
   iot-mongo:
     image: mongo:7.0
     container_name: iot-mongo
@@ -45,6 +47,8 @@ services:
     networks:
       - iot-net
 
+
+  #kafka
   zookeeper:
     image: confluentinc/cp-zookeeper:7.7.1
     container_name: zookeeper

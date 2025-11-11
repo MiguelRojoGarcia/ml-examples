@@ -5,15 +5,14 @@ from datetime import datetime
 
 
 class DeviceType(str, Enum):
-    SENSOR = "sensor"
-    ACTUATOR = "actuator"
-    GATEWAY = "gateway"
+    ELECTRIC = "ELECTRIC"
+    SUCTION_PUMP = "SUCTION_PUMP"
 
 @dataclass(frozen=True)
 class Device:
     no:str
     name:str
-    type: DeviceType = DeviceType.SENSOR
+    type: DeviceType = DeviceType.ELECTRIC
     model: Optional[str] = None
     registered_at: Optional[datetime] = None
 

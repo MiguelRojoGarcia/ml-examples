@@ -10,7 +10,7 @@ from core.domain.metric.metric import Metric
 
 from core.domain.common.value_objects.temperature import Temperature , TEMP_UNIT_CEL
 from core.domain.common.value_objects.humidity import Humidity
-from core.domain.common.value_objects.device import Device
+from core.domain.device.device import Device
 from core.domain.common.value_objects.timestamp import TimeStamp
 
 ##Load env

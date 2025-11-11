@@ -1,5 +1,3 @@
-import pytest
-
 from core.domain.common.value_objects.temperature import Temperature
 from core.domain.common.value_objects.temperature import TEMP_UNIT_CEL
 
