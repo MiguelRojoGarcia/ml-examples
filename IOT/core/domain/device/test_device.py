@@ -1,4 +1,3 @@
-import pytest
 import uuid
 from core.domain.device.device import Device , DeviceType
 
