@@ -24,10 +24,14 @@ class Metric:
     
     @staticmethod
     def from_dict(data: dict) -> "Metric":
+        milk_litters = 0.0
+        if "milk_litters" in data and data["milk_litters"] is not None:
+            milk_litters = MilkLitters(**data["milk_litters"])
+
         return Metric(
             cow_id=data["cow_id"],
             device_id=data["device_id"],
-            milk_litters=MilkLitters(**data["milk_litters"]),
+            milk_litters=milk_litters,
             datetime=TimeStamp.from_dict(data["datetime"]),
             temp=Temperature(**data["temp"]),
             humidity=Humidity(**data["humidity"]),
